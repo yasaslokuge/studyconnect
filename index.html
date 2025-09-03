@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyConnect - Services for International Students</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>StudyConnect</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#register" class="nav-link">Register</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Connect. Serve. Succeed.</h1>
+            <p>Find trusted services from international students in your area</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="showSection('services')">Find Services</button>
+                <button class="btn btn-secondary" onclick="showSection('register')">Join as Provider</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-users-cog"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2>Available Services</h2>
+            <div class="search-bar">
+                <input type="text" id="service-search" placeholder="Search for services...">
+                <button onclick="searchServices()"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="service-categories">
+                <div class="category-card" onclick="filterServices('cleaning')">
+                    <i class="fas fa-broom"></i>
+                    <h3>Cleaning Services</h3>
+                    <p>House cleaning, deep cleaning, office cleaning</p>
+                </div>
+                <div class="category-card" onclick="filterServices('tutoring')">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Tutoring</h3>
+                    <p>Academic support, language learning, test prep</p>
+                </div>
+                <div class="category-card" onclick="filterServices('delivery')">
+                    <i class="fas fa-truck"></i>
+                    <h3>Delivery & Transport</h3>
+                    <p>Food delivery, moving assistance, airport pickup</p>
+                </div>
+                <div class="category-card" onclick="filterServices('tech')">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Tech Support</h3>
+                    <p>Computer repair, web design, tech assistance</p>
+                </div>
+                <div class="category-card" onclick="filterServices('personal')">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Personal Services</h3>
+                    <p>Pet sitting, shopping assistance, companionship</p>
+                </div>
+                <div class="category-card" onclick="filterServices('creative')">
+                    <i class="fas fa-palette"></i>
+                    <h3>Creative Services</h3>
+                    <p>Graphic design, photography, content creation</p>
+                </div>
+            </div>
+
+            <div id="service-providers" class="service-providers">
+                <!-- Service providers will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About StudyConnect</h2>
+                    <p>StudyConnect is a platform designed to bridge the gap between international students and the local community. We understand that international students often have diverse skills and are looking for opportunities to earn income while studying.</p>
+                    <p>Our platform allows students to offer their services in various categories, from cleaning and tutoring to tech support and creative services. At the same time, it helps local residents and businesses find reliable, affordable services.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Verified Providers</h4>
+                            <p>All service providers are verified students</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <h4>Quality Assured</h4>
+                            <p>Rating system ensures high-quality services</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-handshake"></i>
+                            <h4>Secure Communication</h4>
+                            <p>Built-in messaging system protects privacy</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Section -->
+    <section id="register" class="register-section">
+        <div class="container">
+            <h2>Join as Service Provider</h2>
+            <div class="register-tabs">
+                <button class="tab-btn active" onclick="showTab('register-tab')">Register</button>
+                <button class="tab-btn" onclick="showTab('update-tab')">Update Profile</button>
+                <button class="tab-btn" onclick="showTab('delete-tab')">Delete Account</button>
+            </div>
+
+            <!-- Register Tab -->
+            <div id="register-tab" class="tab-content active">
+                <form id="register-form" class="form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name *</label>
+                            <input type="text" id="full-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="email" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number *</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>University *</label>
+                            <input type="text" id="university" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Category *</label>
+                        <select id="service-category" required>
+                            <option value="">Select a category</option>
+                            <option value="cleaning">Cleaning Services</option>
+                            <option value="tutoring">Tutoring</option>
+                            <option value="delivery">Delivery & Transport</option>
+                            <option value="tech">Tech Support</option>
+                            <option value="personal">Personal Services</option>
+                            <option value="creative">Creative Services</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Skills & Experience *</label>
+                        <textarea id="skills" rows="4" placeholder="Describe your skills and experience..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Location *</label>
+                        <input type="text" id="location" placeholder="City, State" required>
+                    </div>
+
+                    <!-- Package Selection -->
+                    <div class="package-selection">
+                        <h3>Select Your Service Packages</h3>
+                        <div class="packages">
+                            <div class="package">
+                                <h4>Basic Package</h4>
+                                <input type="checkbox" id="basic-package">
+                                <label for="basic-package">Include Basic Package</label>
+                                <div class="package-details">
+                                    <input type="text" placeholder="Service description" id="basic-desc">
+                                    <input type="number" placeholder="Price" id="basic-price">
+                                    <input type="text" placeholder="Duration" id="basic-duration">
+                                </div>
+                            </div>
+                            <div class="package">
+                                <h4>Standard Package</h4>
+                                <input type="checkbox" id="standard-package">
+                                <label for="standard-package">Include Standard Package</label>
+                                <div class="package-details">
+                                    <input type="text" placeholder="Service description" id="standard-desc">
+                                    <input type="number" placeholder="Price" id="standard-price">
+                                    <input type="text" placeholder="Duration" id="standard-duration">
+                                </div>
+                            </div>
+                            <div class="package">
+                                <h4>Premium Package</h4>
+                                <input type="checkbox" id="premium-package">
+                                <label for="premium-package">Include Premium Package</label>
+                                <div class="package-details">
+                                    <input type="text" placeholder="Service description" id="premium-desc">
+                                    <input type="number" placeholder="Price" id="premium-price">
+                                    <input type="text" placeholder="Duration" id="premium-duration">
+                                </div>
+                            </div>
+                            <div class="package">
+                                <h4>Custom Package</h4>
+                                <input type="checkbox" id="custom-package">
+                                <label for="custom-package">Offer Custom Services</label>
+                                <div class="package-details">
+                                    <textarea placeholder="Describe your custom services..." id="custom-desc"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+
+            <!-- Update Tab -->
+            <div id="update-tab" class="tab-content">
+                <form id="update-form" class="form">
+                    <div class="form-group">
+                        <label>Email to Update *</label>
+                        <input type="email" id="update-email" required>
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="loadProfile()">Load Profile</button>
+                    <div id="update-fields" style="display: none;">
+                        <!-- Same fields as register form will be populated here -->
+                    </div>
+                </form>
+            </div>
+
+            <!-- Delete Tab -->
+            <div id="delete-tab" class="tab-content">
+                <form id="delete-form" class="form">
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" id="delete-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason for Deletion</label>
+                        <select id="delete-reason">
+                            <option value="">Select reason (optional)</option>
+                            <option value="graduated">Graduated</option>
+                            <option value="moved">Moved away</option>
+                            <option value="no-longer-needed">No longer need the service</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <p class="warning">⚠️ This action cannot be undone. All your data will be permanently deleted.</p>
+                    <button type="submit" class="btn btn-danger">Delete Account</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email</h4>
+                        <p>support@studyconnect.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h4>Address</h4>
+                        <p>123 University Ave, Student City, SC 12345</p>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Provider Profile Modal -->
+    <div id="provider-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="provider-details">
+                <!-- Provider details will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Modal -->
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <h3>Send Message</h3>
+            <form id="message-form">
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" id="sender-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Your Email *</label>
+                    <input type="email" id="sender-email" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <input type="text" id="message-subject" required>
+                </div>
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea id="message-content" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>StudyConnect</span>
+                    </div>
+                    <p>Connecting international students with opportunities.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#register">Register</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> support@studyconnect.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudyConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
